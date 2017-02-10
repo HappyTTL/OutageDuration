@@ -17,7 +17,7 @@ global nodespeed;
 numnode = 1;
 %length of path
 global simlength;
-simlength = 1000000;
+simlength = 11000;
 %cell size
 topologysize = 1000;
 MOBILITY=true;
