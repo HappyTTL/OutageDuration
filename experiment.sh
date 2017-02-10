@@ -28,5 +28,5 @@ mkfir -p dat/traces
 
 # Run code
 R --no-save --no-restore CMD BATCH exampleR.R "output/exampleR-$PBS_ARRAYID.Rout"
-$MATLAB -nodisplay -r "traceGeneration,exit"
-$MATLAB -nodisplay -r "GridVSRandomOutageProb,exit"
+$MATLAB -nodisplay -r "traceGeneration, GridVSRandomOutageProb, exit"
+#$MATLAB -nodisplay -r "GridVSRandomOutageProb,exit"
