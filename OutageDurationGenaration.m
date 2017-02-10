@@ -12,7 +12,7 @@ clc;
 alpha = 4;
 N0 = -104;
 lambda_upper = 100; %% Maximal density of a 1000*1000 area
-lambda_set = [3 5 9 10 15 20 30 40 50];
+lambda_set = [3 5 9 10 15 20 30 40 50 100 200 300 500 1000];
 sigma = 8; %% standard deviation of correlated shadow fading
 DeCorrDis = 100;
 P = 40;
