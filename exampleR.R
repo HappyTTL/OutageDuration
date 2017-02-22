@@ -32,7 +32,7 @@ if(nchar(arrayId)==0) {
 }
 
 FieldId <- as.numeric(arrayId)
-DeCorr <- 100
+DeCorr <- 20
 model <- RMstable(alpha=1, scale=DeCorr)
 #RMnugget(var=1) + # nugget
 #RMtrend(mean=0.5) # and mean
