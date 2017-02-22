@@ -7,7 +7,7 @@ if isempty(array_id)
 end
 
 field_id = str2num(array_id);
-mobilityparameter=struct('MODEL_NAME','RWP', 'SPEED_INTERVAL', [1 10], 'PAUSE_INTERVAL',[0 60],'TOPOLOGY_UPDATE_TIME',0.5,'CHANNEL_UPDATE_TIME',10);
+mobilityparameter=struct('MODEL_NAME','RWP', 'SPEED_INTERVAL', [1 20], 'PAUSE_INTERVAL',[0 60],'TOPOLOGY_UPDATE_TIME',0.1,'CHANNEL_UPDATE_TIME',10);
 %number of randomly moved node:
 global numnode;
 global mobilityvector;
