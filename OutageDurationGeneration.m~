@@ -96,10 +96,11 @@ for j = 1:length(lambda_set)
         
         for n = 1 : pathLength
              if sqrt(round(BS_position(i,1))^2 + round(BS_position(i,2))^2) >= 2500
-                shadowing_DB(i, n) = normrnd(0, sigma);
+                shadowing_DB(i) = normrnd(0, sigma);
             else
-                shadowing_DB(i, n) = B(round(BS_position(i,1))+2500, round(BS_position(i,2))+2500)*sigma;
-             end
+                shadowing_DB(i) = B(round(BS_position(i,1))+2500, round(BS_position(i,2))+2500)*sigma;
+            end
+            shadowing(i) = 10^(shadowing_DB(i)/10);
 %             if sqrt(round(-BS_position(i,1) + MU_Position(n,1))^2 + round(-BS_position(i,2) + MU_Position(n,2))^2) >= 1500
 %                 shadowing_DB(i, n) = normrnd(0, sigma);
 %             else
