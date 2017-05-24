@@ -11,7 +11,7 @@ clc;
 %%%%% Initial set up
 alpha = 4;
 N0 = -104;
-lambda_upper = 100; %% Maximal density of a 1000*1000 area
+lambda_upper = 1000; %% Maximal density of a 1000*1000 area
 lambda_set = [3 5 9 10 15 20 30 40 50 100 200 300 500 1000];
 sigma = 8; %% standard deviation of correlated shadow fading
 DeCorrDis = 20;
@@ -27,14 +27,14 @@ if isempty(array_id)
 end
 
 field_id = str2num(array_id);
-matFileName = sprintf('dat/ShadowField/ExpSF%dDeCorr%d.mat', field_id, DeCorrDis);
-if exist(matFileName, 'file')
+ matFileName = sprintf('dat20/ShadowField/ExpSF%dDeCorr%d.mat', field_id, DeCorrDis);
+ if exist(matFileName, 'file')
     load(matFileName);
     shadowField = B;
 else
     fprintf('File %s does not exist.\n', matFileName);
 end
-traceFileName = sprintf('dat/traces/trace%d.mat', field_id);
+traceFileName = sprintf('dat20/traces/trace%d.mat', field_id);
 if exist(traceFileName, 'file')
     load(traceFileName);
     % throw the first 1000 locations
@@ -95,17 +95,17 @@ for j = 1:length(lambda_set)
     for i = 1 : N(1)
         
         for n = 1 : pathLength
-             if sqrt(round(BS_position(i,1))^2 + round(BS_position(i,2))^2) >= 2500
-                shadowing_DB(i, n) = normrnd(0, sigma);
-            else
-                shadowing_DB(i, n) = B(round(BS_position(i,1))+2500, round(BS_position(i,2))+2500)*sigma;
-             end
-%             if sqrt(round(-BS_position(i,1) + MU_Position(n,1))^2 + round(-BS_position(i,2) + MU_Position(n,2))^2) >= 1500
-%                 shadowing_DB(i, n) = normrnd(0, sigma);
-%             else
-%                 shadowing_DB(i,n) = shadowField(round(-BS_position(i,1) + MU_Position(n,1))+1500, round(-BS_position(i,2) + MU_Position(n,2))+1500)*sigma;
+ %            if sqrt(round(BS_position(i,1))^2 + round(BS_position(i,2))^2) >= 2500
+  %              shadowing_DB(i, n) = normrnd(0, sigma);
+   %         else
+  %              shadowing_DB(i, n) = B(round(BS_position(i,1))+2500, round(BS_position(i,2))+2500)*sigma;
+   %          end
+             if sqrt(round(-BS_position(i,1) + MU_Position(n,1))^2 + round(-BS_position(i,2) + MU_Position(n,2))^2) >= 2500
+                 shadowing_DB(i, n) = normrnd(0, sigma);
+             else
+                 shadowing_DB(i,n) = shadowField(round(-BS_position(i,1) + MU_Position(n,1))+2500, round(-BS_position(i,2) + MU_Position(n,2))+2500)*sigma;
                 %                     Shadowing_DB2(i,j) = ShadowField2(FieldID(i), round(-BaseStationPosition(i,1) + MU_Position(j,1))+1500, round(-BaseStationPosition(i,2) + MU_Position(j,2))+1500)*Sigma;
-%             end
+             end
             %                 Shadowing2(i,j) = 10^(Shadowing_DB2(i,j)/10);
             shadowing(i,n) = 10^(shadowing_DB(i,n)/10);
         end
@@ -161,13 +161,13 @@ for j = 1:length(lambda_set)
         NB_SIR(n) = SIR_DB(NB(n),n);
     end
     
-    filename = ['dat/MaxSINR/Max_SINR_Tx' num2str(P) 'BS' num2str(lambda) 'Exp' num2str(DeCorrDis) 'ID' num2str(field_id) '.mat'];
+    filename = ['dat20/MaxSINR/Max_SINR_Tx' num2str(P) 'BS' num2str(lambda) 'Exp' num2str(DeCorrDis) 'ID' num2str(field_id) '.mat'];
     save(filename, 'max_SINR');
-    filename = ['dat/MaxSIR/Max_SIR_Tx' num2str(P) 'BS' num2str(lambda) 'Exp' num2str(DeCorrDis) 'ID' num2str(field_id) '.mat'];
+    filename = ['dat20/MaxSIR/Max_SIR_Tx' num2str(P) 'BS' num2str(lambda) 'Exp' num2str(DeCorrDis) 'ID' num2str(field_id) '.mat'];
     save(filename, 'max_SIR');
-    filename = ['dat/NBSINR/Max_SINR_Tx' num2str(P) 'BS' num2str(lambda) 'Exp' num2str(DeCorrDis) 'ID' num2str(field_id) '.mat'];
+    filename = ['dat20/NBSINR/Max_SINR_Tx' num2str(P) 'BS' num2str(lambda) 'Exp' num2str(DeCorrDis) 'ID' num2str(field_id) '.mat'];
     save(filename, 'NB_SINR');
-    filename = ['dat/NBSIR/Max_SIR_Tx' num2str(P) 'BS' num2str(lambda) 'Exp' num2str(DeCorrDis) 'ID' num2str(field_id) '.mat'];
+    filename = ['dat20/NBSIR/Max_SIR_Tx' num2str(P) 'BS' num2str(lambda) 'Exp' num2str(DeCorrDis) 'ID' num2str(field_id) '.mat'];
     save(filename, 'NB_SIR');
 end
 
@@ -176,4 +176,4 @@ end
 %     hold on;
 %     figure(2);
 %     plot((1:j), Max_SIR);
-%     hold on;
+%    hold on;

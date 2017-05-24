@@ -32,5 +32,5 @@ for i=1:simlength
     traces(:,i) = XY;
     
 end
-filename = ['dat/traces/trace' num2str(field_id) '.mat'];
+filename = ['dat20/traces/trace' num2str(field_id) '.mat'];
 save(filename, 'traces');

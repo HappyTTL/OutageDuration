@@ -1,4 +1,4 @@
-#PBS -l nodes=1:ppn=1,mem=2GB,walltime=00:30:00
+#PBS -l nodes=1:ppn=1,mem=2GB,walltime=05:00:00
 #PBS -o output/
 #PBS -e output/
 
@@ -17,16 +17,17 @@ fi
 cd $SCRATCH/OutageDuration
 
 # Create 'dat' directory if it does not exist
-mkdir -p dat
+mkdir -p dat20
 mkdir -p output
-mkdir -p dat/MaxSINR
-mkdir -p dat/MaxSIR
-mkdir -p dat/NBSINR
-mkdir -p dat/NBSIR
-mkdir -p dat/ShadowField
-mkfir -p dat/traces
+mkdir -p dat20/MaxSINR
+mkdir -p dat20/MaxSIR
+mkdir -p dat20/NBSINR
+mkdir -p dat20/NBSIR
+mkdir -p dat20/ShadowField
+mkdir -p dat20/traces
 
 # Run code
+# $TMPDIR=/scratch/tl984/tmp
 R --no-save --no-restore CMD BATCH exampleR.R "output/exampleR-$PBS_ARRAYID.Rout"
 $MATLAB -nodisplay -r "master, exit"
 #$MATLAB -nodisplay -r "GridVSRandomOutageProb,exit"

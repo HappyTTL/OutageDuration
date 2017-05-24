@@ -43,7 +43,7 @@ to <- 5000
 x.seq <- seq(from, to, length=5000)
 y.seq <- seq(from, to, length=5000)
 simu <- RFsimulate(model, x=x.seq, y=y.seq)
-filename <- paste("dat/ShadowField/ExpSF", FieldId, "DeCorr", DeCorr, ".mat", sep="");
+filename <- paste("dat20/ShadowField/ExpSF", FieldId, "DeCorr", DeCorr, ".mat", sep="");
 writeMat(filename, B = simu)
 # plot(simu)
 # #############################################################
